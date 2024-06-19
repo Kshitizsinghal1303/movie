@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequential Video Playback</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('path/to/your/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+            color: #fff;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .video-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>To aaiye shuru karte hain.. </h1>
+        <h4>NOTE:Ye video 40-45 min ki hai to next button puri video ke baad hi dabayen</h4>
+        <div class="video-container">
+            <video id="video1" controls>
+                <source src="./1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="video2" controls style="display:none;">
+                <source src="./2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="video3" controls style="display:none;">
+                <source src="./3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <a href="fourth.html" class="cta-button">Next Video</a>
+        <a href="second.html" class="cta-button">Previous Video</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const video1 = document.getElementById('video1');
+            const video2 = document.getElementById('video2');
+            const video3 = document.getElementById('video3');
+
+            video1.onended = () => {
+                video1.style.display = 'none';
+                video2.style.display = 'block';
+                video2.play();
+            };
+
+            video2.onended = () => {
+                video2.style.display = 'none';
+                video3.style.display = 'block';
+                video3.play();
+            };
+        });
+    </script>
+</body>
+</html>
